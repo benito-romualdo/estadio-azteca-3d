@@ -47,6 +47,7 @@ Requiere internet para los CDN de three.js, GSAP y las fuentes.
 - **Multitud de ~45.000 instancias** con shader propio: mosaicos (bandera, oro, velas, tricolor), La Ola y flashes de cámaras se calculan 100% en GPU.
 - Estadio generado por revolución de perfil (lathe elíptico): tres tribunas escalonadas, techumbre voladiza, celosía diagonal, foso, pantallas con canvas dinámico.
 - Valle de México: Popocatépetl con fumarola, Iztaccíhuatl, 4.200 luces urbanas, estrellas y niebla con seis estados de ánimo lumínicos interpolados con GSAP.
+- **Guardianes del Coloso** (estética neón-blacklight): cabezas de Quetzalcóatl con penacho de plumas flanqueando la puerta oriente, seis estelas con grecas *xicalcoliuhqui* que respiran luz, y tres alebrijes de alambre de neón —lobo, jaguar y águila— que custodian la explanada y despiertan con la noche.
 - Sonido **sintetizado** con WebAudio: rumor de multitud (ruido café filtrado), viento, colchón armónico, huéhuetl y estallidos de pirotecnia.
 - Cancha y Piedra del Sol pintadas a mano en `<canvas>`.
 

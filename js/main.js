@@ -15,6 +15,7 @@ import { Crowd } from './crowd.js';
 import {
   Quetzalcoatl, FallingRain, PapelPicado, Fireworks, TricolorBeams, GolDelSiglo, PALETTES,
 } from './effects.js';
+import { Guardians } from './guardians.js';
 import { SoundScape } from './audio.js';
 import { Director } from './chapters.js';
 import { UI } from './ui.js';
@@ -60,6 +61,7 @@ const fx = {
   fireworks: new Fireworks(scene),
   beams: new TricolorBeams(scene),
   gol: new GolDelSiglo(scene),
+  guardians: new Guardians(scene),
 };
 
 const audio = new SoundScape();
@@ -133,7 +135,12 @@ window.addEventListener('resize', () => {
   composer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// hook de inspección para verificación headless
+// hooks de inspección para verificación headless
+window.__SETCAM__ = (p, t) => {
+  director?.setPlaying(false);
+  cam.pos.set(p[0], p[1], p[2]);
+  cam.target.set(t[0], t[1], t[2]);
+};
 window.__DEBUG__ = () => ({
   spots: stadium.spots.map(s => ({ i: Math.round(s.intensity), pos: s.position.toArray().map(Math.round) })),
   hemi: world.hemi.intensity.toFixed(2),
@@ -174,6 +181,7 @@ function loop() {
   fx.papel.update(t);
   fx.beams.update(t);
   fx.fireworks.update(dt);
+  fx.guardians.update(t);
 
   if (freecam) {
     controls.update();

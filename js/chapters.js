@@ -116,6 +116,7 @@ export class Director {
     crowd.setPattern(PATTERNS.CROWD, 1);
     crowd.setDim(0.45, 2);
     fx.quetzal.setVisible(true, 4);
+    fx.guardians.setGlow(0.7, 5);          // los guardianes despiertan con el alba
     gsap.to(stadium.pyreMat, { opacity: 1, duration: 3, delay: 1 });
     gsap.to(stadium.sunStoneMat, { opacity: 0.9, duration: 5, delay: 8 });
     audio.setScene({ crowd: 0.04, pad: 0.05, wind: 0.1 });
@@ -138,6 +139,7 @@ export class Director {
     this._mood('day', 4.5);
     crowd.setPattern(PATTERNS.CROWD, 3);
     crowd.setDim(1, 3);
+    this.ctx.fx.guardians.setGlow(0.15, 4); // de día son esculturas
     audio.setScene({ crowd: 0.35, pad: 0.015, wind: 0.05 });
     stadium.setScreen(['29 · V · 1966'], '#e8b33b', 'nace el coloso de santa úrsula');
 
@@ -158,6 +160,7 @@ export class Director {
     crowd.setPattern(PATTERNS.GOLD, 4);
     crowd.setDim(1, 3);
     fx.confetti.setVisible(true, 3);
+    fx.guardians.setGlow(0.3, 4);
     audio.setScene({ crowd: 0.55, pad: 0.02, wind: 0.04 });
     stadium.setScreen(['MÉXICO 70'], '#ffd34d', 'pelé · el partido del siglo');
 
@@ -175,6 +178,7 @@ export class Director {
     this._mood('night', 3.5);
     crowd.setPattern(PATTERNS.VERDE, 3);
     crowd.setDim(0.85, 2);
+    fx.guardians.setGlow(0.45, 3);
     audio.setScene({ crowd: 0.5, pad: 0.03, wind: 0.03 });
     stadium.setScreen(['22 · VI · 1986'], '#2fbf8f', 'cuartos de final · 114.580 almas');
 
@@ -221,6 +225,7 @@ export class Director {
     stadium.setFloodlights(0.12, gsap, 4);
     fx.papel.setVisible(true, 3.5);
     fx.petals.setVisible(true, 4);
+    fx.guardians.setGlow(1, 4);             // los alebrijes son los espíritus que vuelven
     audio.setScene({ crowd: 0.07, pad: 0.06, wind: 0.08 });
     audio.startDrums();
     stadium.setScreen(['XOCHITL IN CUICATL'], '#e4007c', 'flor y canto · los que volvieron');
@@ -243,6 +248,7 @@ export class Director {
     stadium.setFloodlights(1, gsap, 3);
     fx.beams.setVisible(true, 3);
     fx.rainTricolor.setVisible(true, 4);
+    fx.guardians.setGlow(1, 3);
     fx.fireworks.setRate(1.4);
     crowd.setFlash(0.5, 3);
     audio.setScene({ crowd: 0.75, pad: 0.04, wind: 0.03 });
