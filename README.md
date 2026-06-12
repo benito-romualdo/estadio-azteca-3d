@@ -1,5 +1,7 @@
 # EL COLOSO — Estadio Azteca · Tres Soles, Un Estadio
 
+### ▶ Ver en vivo: **https://benito-romualdo.github.io/estadio-azteca-3d/**
+
 Experiencia cinematográfica 3D en WebGL donde el **Estadio Azteca** es el protagonista:
 seis capítulos que recorren del México prehispánico al **11 de junio de 2026**, el día en
 que el Coloso de Santa Úrsula se convierte en el primer estadio de la historia en
@@ -9,6 +11,10 @@ inaugurar **tres Copas del Mundo** (1970 · 1986 · 2026).
 multitud, la música y los efectos nacen del código.
 
 ## Cómo verla
+
+**Lo más fácil:** abre la demo en vivo → https://benito-romualdo.github.io/estadio-azteca-3d/
+
+**En local:**
 
 ```bash
 npx serve . -l 4173
