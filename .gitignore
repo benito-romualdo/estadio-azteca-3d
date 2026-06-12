@@ -1,0 +1,15 @@
+# dependencias
+node_modules/
+
+# artefactos de verificación / capturas
+_check/
+*.log
+
+# sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# editores
+.vscode/
+.idea/

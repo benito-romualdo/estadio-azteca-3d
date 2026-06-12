@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EL COLOSO — Estadio Azteca · Tres Soles, Un Estadio</title>
+<meta name="description" content="Experiencia cinematográfica 3D del Estadio Azteca: raíces prehispánicas, México 70, la noche del 86 y el tercer amanecer mundialista de 2026." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+    "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- ══════════ PORTADA / LOADER ══════════ -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="sunstone" aria-hidden="true">
+      <div class="sunstone-rays"></div>
+      <div class="sunstone-ring r1"></div>
+      <div class="sunstone-ring r2"></div>
+      <div class="sunstone-core"></div>
+    </div>
+    <p class="loader-kicker">Ciudad de México · 2,240 m sobre el mar</p>
+    <h1 class="loader-title">EL&nbsp;COLOSO</h1>
+    <p class="loader-sub">Estadio Azteca — tres soles, un estadio</p>
+    <p class="loader-date">11 · 06 · 2026 &nbsp;—&nbsp; hoy el mundo vuelve a Santa Úrsula</p>
+    <button id="btn-start" type="button">
+      <span>Comenzar la travesía</span>
+    </button>
+    <p class="loader-hint">audio recomendado · experiencia generada por procedimientos, sin un solo asset externo</p>
+  </div>
+</div>
+
+<!-- ══════════ ESCENA ══════════ -->
+<div id="scene"></div>
+
+<!-- cine -->
+<div class="letterbox top" aria-hidden="true"></div>
+<div class="letterbox bottom" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- sello -->
+<header id="badge">
+  <div class="badge-mark">EA</div>
+  <div class="badge-text">
+    <span>Estadio&nbsp;Azteca</span>
+    <small>El Coloso de Santa Úrsula · MCMLXVI</small>
+  </div>
+</header>
+
+<!-- tarjeta de capítulo -->
+<div id="title-card" aria-live="polite">
+  <p class="tc-num"></p>
+  <h2 class="tc-title"></h2>
+  <p class="tc-sub"></p>
+</div>
+
+<!-- línea de tiempo -->
+<nav id="timeline" aria-label="Capítulos">
+  <div class="tl-track"><div class="tl-progress"></div></div>
+  <div class="tl-dots"></div>
+</nav>
+
+<!-- controles -->
+<div id="controls">
+  <button id="btn-play" title="Pausar / reanudar" aria-label="Pausar o reanudar">❚❚</button>
+  <button id="btn-cam" title="Cámara libre" aria-label="Cámara libre">✦</button>
+  <button id="btn-audio" title="Sonido" aria-label="Sonido">♪</button>
+</div>
+
+<p id="freecam-hint">cámara libre — arrastra para orbitar · rueda para acercar · ✦ para volver al cine</p>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

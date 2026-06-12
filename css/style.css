@@ -1,0 +1,250 @@
+/* ════════════════════════════════════════════════════════════════
+   EL COLOSO — Estadio Azteca · dirección de arte
+   obsidiana + oro solar + rosa mexicano + jade
+   ════════════════════════════════════════════════════════════════ */
+
+:root {
+  --obsidian: #07060a;
+  --obsidian-2: #0e0c14;
+  --gold: #e8b33b;
+  --gold-bright: #ffd97a;
+  --jade: #2fbf8f;
+  --rosa: #e4007c;
+  --bone: #efe6d4;
+  --ash: #8d8576;
+  --display: "Cinzel", serif;
+  --ui: "Archivo", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--obsidian);
+  color: var(--bone);
+  font-family: var(--ui);
+}
+
+#scene { position: fixed; inset: 0; }
+#scene canvas { display: block; }
+
+/* ── grano y viñeta de cine ───────────────────────────────────── */
+.vignette {
+  position: fixed; inset: 0; pointer-events: none; z-index: 20;
+  background: radial-gradient(ellipse at 50% 48%, transparent 52%, rgba(2,1,4,.55) 100%);
+}
+.grain {
+  position: fixed; inset: -100%; pointer-events: none; z-index: 21;
+  opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
+  animation: grain-shift 0.9s steps(4) infinite;
+}
+@keyframes grain-shift {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(-2%,1.6%); }
+  50% { transform: translate(1.4%,-2%); }
+  75% { transform: translate(-1.2%,-1%); }
+  100% { transform: translate(0,0); }
+}
+
+/* ── letterbox ────────────────────────────────────────────────── */
+.letterbox {
+  position: fixed; left: 0; right: 0; height: 0; z-index: 30;
+  background: #010103; transition: height 1.4s cubic-bezier(.7,0,.2,1);
+  pointer-events: none;
+}
+.letterbox.top { top: 0; }
+.letterbox.bottom { bottom: 0; }
+body.cinema .letterbox { height: 7.5vh; }
+
+/* ════════════ LOADER / PORTADA ════════════ */
+#loader {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  background:
+    radial-gradient(ellipse 90% 65% at 50% 110%, rgba(232,179,59,.13), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 50% -10%, rgba(228,0,124,.10), transparent 60%),
+    var(--obsidian);
+  transition: opacity 1.6s ease, visibility 1.6s;
+}
+#loader.hidden { opacity: 0; visibility: hidden; }
+
+.loader-inner { text-align: center; padding: 0 24px; max-width: 720px; }
+
+/* piedra del sol estilizada en CSS puro */
+.sunstone { position: relative; width: 132px; height: 132px; margin: 0 auto 38px; animation: sun-breathe 5s ease-in-out infinite; }
+@keyframes sun-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+.sunstone-rays {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, var(--gold) 0deg 8deg, transparent 8deg 45deg);
+  -webkit-mask: radial-gradient(circle, transparent 56%, #000 57%, #000 72%, transparent 73%);
+          mask: radial-gradient(circle, transparent 56%, #000 57%, #000 72%, transparent 73%);
+  animation: spin 40s linear infinite;
+  opacity: .9;
+}
+.sunstone-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(232,179,59,.7); }
+.sunstone-ring.r1 { inset: 18px; border-width: 2px; border-style: dashed; animation: spin 60s linear infinite reverse; }
+.sunstone-ring.r2 { inset: 30px; opacity: .5; }
+.sunstone-core {
+  position: absolute; inset: 42px; border-radius: 50%;
+  background: radial-gradient(circle at 38% 34%, var(--gold-bright), var(--gold) 55%, #8a5e12);
+  box-shadow: 0 0 34px rgba(232,179,59,.45), 0 0 90px rgba(232,179,59,.18);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loader-kicker {
+  font-size: 11px; letter-spacing: .42em; text-transform: uppercase;
+  color: var(--ash); margin-bottom: 18px; font-weight: 500;
+}
+.loader-title {
+  font-family: var(--display); font-weight: 900;
+  display: inline-block; white-space: nowrap;
+  font-size: clamp(42px, 9vw, 96px); line-height: .95;
+  letter-spacing: .06em;
+  background: linear-gradient(180deg, #fff3d6 0%, var(--gold-bright) 38%, var(--gold) 62%, #9a6c16 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 6px 30px rgba(232,179,59,.25));
+}
+.loader-sub {
+  font-family: var(--display); font-weight: 500;
+  font-size: clamp(13px, 2vw, 18px); letter-spacing: .34em; text-transform: uppercase;
+  color: var(--bone); margin-top: 14px; opacity: .85;
+}
+.loader-date {
+  margin-top: 26px; font-size: 12px; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--rosa); font-weight: 600;
+  text-shadow: 0 0 22px rgba(228,0,124,.5);
+}
+
+#btn-start {
+  margin-top: 42px; cursor: pointer;
+  font-family: var(--ui); font-weight: 700; font-size: 13px;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--obsidian); background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+  border: none; padding: 17px 46px; border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255,217,122,.6), 0 10px 40px rgba(232,179,59,.3);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+#btn-start:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--gold-bright), 0 16px 50px rgba(232,179,59,.45); }
+#btn-start:active { transform: translateY(0); }
+
+.loader-hint { margin-top: 26px; font-size: 10.5px; letter-spacing: .14em; color: var(--ash); opacity: .75; }
+
+/* ════════════ SELLO ════════════ */
+#badge {
+  position: fixed; top: max(2.4vh, 18px); left: 28px; z-index: 40;
+  display: flex; align-items: center; gap: 13px;
+  opacity: 0; transition: opacity 1.2s ease 0.6s;
+}
+body.live #badge { opacity: 1; }
+.badge-mark {
+  width: 42px; height: 42px; display: grid; place-items: center;
+  font-family: var(--display); font-weight: 900; font-size: 16px; color: var(--gold);
+  border: 1px solid rgba(232,179,59,.55); border-radius: 2px;
+  background: rgba(7,6,10,.45); backdrop-filter: blur(6px);
+}
+.badge-text span {
+  display: block; font-size: 12px; font-weight: 700; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--bone);
+}
+.badge-text small { display: block; font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ash); margin-top: 3px; }
+
+/* ════════════ TARJETA DE CAPÍTULO ════════════ */
+#title-card {
+  position: fixed; left: 50%; bottom: 16vh; transform: translateX(-50%);
+  z-index: 35; text-align: center; pointer-events: none; width: min(92vw, 980px);
+}
+.tc-num {
+  font-size: 11px; font-weight: 600; letter-spacing: .5em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .9s ease, transform .9s ease;
+}
+.tc-title {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(30px, 5.4vw, 64px); line-height: 1.04; letter-spacing: .04em;
+  color: var(--bone);
+  text-shadow: 0 4px 40px rgba(0,0,0,.8);
+  opacity: 0; transform: translateY(18px);
+  transition: opacity 1s ease .12s, transform 1s ease .12s;
+}
+.tc-sub {
+  margin-top: 14px; font-size: clamp(12px, 1.5vw, 15px); font-weight: 400;
+  letter-spacing: .12em; color: rgba(239,230,212,.82); font-style: italic;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 1s ease .26s, transform 1s ease .26s;
+}
+#title-card.show .tc-num,
+#title-card.show .tc-title,
+#title-card.show .tc-sub { opacity: 1; transform: translateY(0); }
+
+/* ════════════ TIMELINE ════════════ */
+#timeline {
+  position: fixed; left: 50%; bottom: max(3.4vh, 26px); transform: translateX(-50%);
+  z-index: 40; width: min(72vw, 760px);
+  opacity: 0; transition: opacity 1.2s ease 1s;
+}
+body.live #timeline { opacity: 1; }
+body.freecam #timeline, body.freecam #title-card { opacity: 0; pointer-events: none; }
+
+.tl-track {
+  position: relative; height: 2px; background: rgba(239,230,212,.16);
+  border-radius: 2px; overflow: hidden;
+}
+.tl-progress {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 0%;
+  background: linear-gradient(90deg, var(--jade), var(--gold), var(--rosa));
+}
+.tl-dots { display: flex; justify-content: space-between; margin-top: 11px; }
+.tl-dot {
+  cursor: pointer; background: none; border: none; padding: 6px 2px;
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  color: var(--ash); font-family: var(--ui);
+  transition: color .4s ease;
+}
+.tl-dot i {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(239,230,212,.28); transform: rotate(45deg);
+  border-radius: 1px;
+  transition: background .4s ease, box-shadow .4s ease, transform .4s ease;
+}
+.tl-dot span { font-size: 9px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; }
+.tl-dot:hover { color: var(--bone); }
+.tl-dot.active { color: var(--gold-bright); }
+.tl-dot.active i {
+  background: var(--gold); transform: rotate(45deg) scale(1.5);
+  box-shadow: 0 0 14px rgba(232,179,59,.8);
+}
+
+/* ════════════ CONTROLES ════════════ */
+#controls {
+  position: fixed; right: 26px; bottom: max(3.2vh, 24px); z-index: 41;
+  display: flex; gap: 10px;
+  opacity: 0; transition: opacity 1.2s ease 1.2s;
+}
+body.live #controls { opacity: 1; }
+#controls button {
+  width: 40px; height: 40px; cursor: pointer;
+  border: 1px solid rgba(239,230,212,.25); border-radius: 2px;
+  background: rgba(7,6,10,.5); backdrop-filter: blur(8px);
+  color: var(--bone); font-size: 14px; font-family: var(--ui);
+  transition: border-color .3s, color .3s, background .3s;
+}
+#controls button:hover { border-color: var(--gold); color: var(--gold-bright); }
+#controls button.on { border-color: var(--gold); color: var(--gold-bright); background: rgba(232,179,59,.12); }
+
+#freecam-hint {
+  position: fixed; left: 50%; bottom: 30px; transform: translateX(-50%);
+  z-index: 40; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ash); opacity: 0; pointer-events: none; transition: opacity .8s ease;
+}
+body.freecam #freecam-hint { opacity: 1; }
+
+@media (max-width: 720px) {
+  #badge { left: 16px; }
+  .badge-text small { display: none; }
+  #timeline { width: 86vw; }
+  .tl-dot span { display: none; }
+  #controls { right: 14px; }
+}
